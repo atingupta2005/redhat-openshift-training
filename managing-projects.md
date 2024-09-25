@@ -2,7 +2,7 @@
 
 ### **1. Creating and Managing Projects**
 
-#### **1.1. Create a New Project**
+#### **1.1. Create a New Project** 
 To create a new project (namespace) where applications will be deployed, use:
 
 ```bash
@@ -11,7 +11,7 @@ oc new-project <project-name> --description="<description>" --display-name="<dis
 
 Example:
 ```bash
-oc new-project my-project --description="This is a test project" --display-name="My Test Project"
+oc new-project ag-project --description="This is a test project" --display-name="My Test Project"
 ```
 
 - **Project Name**: The actual name of the project (required).
@@ -40,7 +40,7 @@ oc describe project <project-name>
 
 Example:
 ```bash
-oc describe project my-project
+oc describe project ag-project
 ```
 
 #### **1.4. Switch Between Projects**
@@ -52,10 +52,10 @@ oc project <project-name>
 
 Example:
 ```bash
-oc project my-project
+oc project ag-project
 ```
 
-This will switch your working context to `my-project`.
+This will switch your working context to `ag-project`.
 
 ---
 
@@ -68,6 +68,10 @@ You can view all resources (pods, services, routes, etc.) in a project using:
 oc get all -n <project-name>
 ```
 
+Example:
+```bash
+oc get all -n ag-project
+```
 This will list all resources in the specified project.
 
 #### **2.2. Delete a Project**
@@ -79,7 +83,7 @@ oc delete project <project-name>
 
 Example:
 ```bash
-oc delete project my-project
+#oc delete project ag-project
 ```
 
 
@@ -94,7 +98,7 @@ oc adm policy add-role-to-user <role> <username> -n <project-name>
 
 Example:
 ```bash
-oc adm policy add-role-to-user admin john -n my-project
+oc adm policy add-role-to-user admin user1 -n ag-project
 ```
 
 - **admin**: Full control over the project.
@@ -110,7 +114,7 @@ oc adm policy remove-role-from-user <role> <username> -n <project-name>
 
 Example:
 ```bash
-oc adm policy remove-role-from-user admin john -n my-project
+oc adm policy remove-role-from-user admin user1 -n ag-project
 ```
 
 #### **3.3. List All Users and Their Roles in a Project**
@@ -120,59 +124,23 @@ To view all roles and their associated users within a project:
 oc get rolebindings -n <project-name>
 ```
 
+
+Example:
+```bash
+oc get rolebindings -n ag-project
+```
+
+
 This will display which users or groups have which roles in the project.
 
 
 ### **5. Monitoring Projects**
-
-#### **5.1. View Resource Usage for a Project**
-To monitor resource usage (CPU, memory) for all pods in a project:
-
-```bash
-oc adm top pods -n <project-name>
-```
-
-You can also view node-level resource usage:
-
-```bash
-oc adm top nodes
-```
 
 #### **5.2. View Event Logs for a Project**
 To view events happening in a project (like pod creation, errors, etc.):
 
 ```bash
 oc get events -n <project-name>
-```
-
----
-
-### **6. Networking and Routes in Projects**
-
-#### **6.1. Create a Route to Expose a Service**
-To expose a service in a project to external traffic, you need to create a route:
-
-```bash
-oc expose svc <service-name> -n <project-name>
-```
-
-Example:
-```bash
-oc expose svc my-app-service -n my-project
-```
-
-#### **6.2. View Routes in a Project**
-To view all routes in a project:
-
-```bash
-oc get routes -n <project-name>
-```
-
-#### **6.3. Delete a Route**
-To delete a route:
-
-```bash
-oc delete route <route-name> -n <project-name>
 ```
 
 ---
@@ -195,7 +163,7 @@ oc delete pod <pod-name> -n <project-name>
 
 Example:
 ```bash
-oc delete pod my-app-pod-1234 -n my-project
+oc delete pod my-app-pod-1234 -n ag-project
 ```
 
 #### **7.3. Restart a Pod**

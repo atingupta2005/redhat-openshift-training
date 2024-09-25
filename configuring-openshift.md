@@ -34,48 +34,8 @@ oc describe node <node-name>
 ```
 Displays detailed information about a specific node, including its labels, allocated resources, and status.
 
-#### **Cordoning and Draining a Node**
-To mark a node unschedulable (cordon it):
-```bash
-oc adm cordon <node-name>
-```
 
-To drain a node (move workloads off of it):
-```bash
-oc adm drain <node-name> --ignore-daemonsets --delete-emptydir-data
-```
-
-#### **Uncordon a Node**
-To make the node schedulable again:
-```bash
-oc adm uncordon <node-name>
-```
-
-### 3. **User and Role Management**
-
-#### **Create a New User (HTPasswd Authentication)**
-```bash
-htpasswd -b users.htpasswd <username> <password>
-oc create secret generic htpass-secret --from-file=htpasswd=users.htpasswd -n openshift-config
-```
-
-#### **Assign a Role to a User**
-Assign a cluster role (e.g., `admin`) to a user:
-```bash
-oc adm policy add-cluster-role-to-user <role> <username>
-```
-
-To assign a project-specific role (e.g., `edit`) to a user in a project:
-```bash
-oc adm policy add-role-to-user <role> <username> -n <project-name>
-```
-
-#### **Remove a User from a Role**
-```bash
-oc adm policy remove-cluster-role-from-user <role> <username>
-```
-
-### 4. **Project (Namespace) Management**
+### 3. **Project (Namespace) Management**
 
 #### **Create a New Project**
 ```bash

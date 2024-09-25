@@ -24,7 +24,7 @@ oc expose svc/<service-name>
 ```
 Example:
 ```bash
-oc expose svc/my-node-app
+oc expose svc/my-nginx-app
 ```
 
 This will create a public URL for your service using the default OpenShift router.
@@ -47,7 +47,7 @@ oc scale deployment/<deployment-name> --replicas=<number>
 ```
 Example:
 ```bash
-oc scale deployment/my-node-app --replicas=3
+oc scale deployment/my-nginx-app --replicas=3
 ```
 
 #### **3.2. Auto-Scaling an Application**
@@ -58,7 +58,7 @@ oc autoscale deployment/<deployment-name> --min=<min-pods> --max=<max-pods> --cp
 ```
 Example:
 ```bash
-oc autoscale deployment/my-node-app --min=2 --max=10 --cpu-percent=80
+oc autoscale deployment/my-nginx-app --min=2 --max=10 --cpu-percent=80
 ```
 
 
@@ -70,29 +70,23 @@ oc logs <pod-name>
 ```
 Example:
 ```bash
-oc logs my-node-app-1-abcde
-```
-
-#### **4.2. Access Application Metrics**
-To view resource usage (CPU, memory) for your app's pods:
-
-```bash
-oc adm top pods -n <project-name>
+oc get pods
+oc logs my-nginx-app-1-abcde
 ```
 
 ---
 
-### **5. Deleting Applications**
+### **4. Deleting Applications**
 
 When you're done with an application, you can clean up resources by deleting the deployment, service, and other related resources.
 
-#### **5.1. Delete an Application**
+#### **4.1. Delete an Application**
 ```bash
 oc delete all -l app=<app-name>
 ```
 Example:
 ```bash
-oc delete all -l app=my-node-app
+oc delete all -l app=my-nginx-app
 ```
 
 This deletes all resources (pods, services, routes, etc.) related to the application.
